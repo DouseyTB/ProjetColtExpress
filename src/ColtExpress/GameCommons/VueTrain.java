@@ -6,7 +6,7 @@ import javax.swing.*;
 import java.awt.*;
 
 public class VueTrain extends JPanel {
-    private Observers _observer;
+    private Observers observer;
 
     public VueTrain()
     {

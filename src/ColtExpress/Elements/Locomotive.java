@@ -1,6 +1,5 @@
 package ColtExpress.Elements;
 
-import ColtExpress.Ressources.Position;
 import ColtExpress.Interface.IWagon;
 
 import java.util.ArrayList;
@@ -9,21 +8,21 @@ public class Locomotive implements IWagon {
 
     public static int LONGUEUR = 70, LARGEUR = 40;
 
-    private ArrayList<Bandit> _bandits;
+    private ArrayList<Bandit> bandits;
 
-    private final int _identifiant = 0;
-    private boolean _isMarshall = true;
+    private final int id = 0;
+    private boolean isMarshall = true;
 
-    private boolean _isMagot = true;
+    private boolean isMagot = true;
 
     public Locomotive()
     {
-        _bandits = new ArrayList<Bandit>();
+        bandits = new ArrayList<Bandit>();
     }
 
     private boolean ContainsBandit(Bandit element)
     {
-        for (Bandit b : _bandits)
+        for (Bandit b : bandits)
             if (b.Name() == element.Name())
                 return true;
 
@@ -33,14 +32,14 @@ public class Locomotive implements IWagon {
     public void AddBandit(Bandit element)
     {
         if (!ContainsBandit(element))
-            _bandits.add(element);
+            bandits.add(element);
     }
 
     public boolean RemoveBandit(Bandit element)
     {
         if (ContainsBandit(element))
         {
-            _bandits.remove(element);
+            bandits.remove(element);
             return true;
         }
         else
@@ -49,25 +48,25 @@ public class Locomotive implements IWagon {
 
     public boolean IsMarshall()
     {
-        return _isMarshall;
+        return isMarshall;
     }
 
     public void AddMarshall()
     {
-        _isMarshall = true;
+        isMarshall = true;
     }
 
     public void RemoveMarshall()
     {
-        _isMarshall = false;
+        isMarshall = false;
     }
 
     public int GetMagot()
     {
-        if (_isMarshall || !_isMagot)
+        if (isMarshall || !isMagot)
             return 0;
 
-        _isMagot = false;
+        isMagot = false;
         return 1000;
     }
 }

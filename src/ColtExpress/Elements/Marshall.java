@@ -6,11 +6,11 @@ import ColtExpress.Interface.IObservable;
 
 public class Marshall implements IPersonnage, IObservable {
 
-    private Position _position;
+    private Position pos;
 
     public Marshall()
     {
-        _position = new Position(0, true);
+        pos = new Position(0, true);
     }
 
     public String Name()
@@ -20,7 +20,7 @@ public class Marshall implements IPersonnage, IObservable {
 
     public Position GetPosition()
     {
-        return _position;
+        return pos;
     }
 
     public void Update()

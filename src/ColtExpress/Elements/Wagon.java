@@ -8,31 +8,31 @@ import java.util.Random;
 
 public class Wagon implements IWagon {
 
-    private ArrayList<Voyageur> _voyageurs;
-    private ArrayList<Bandit> _bandits;
+    private ArrayList<Voyageur> travellers;
+    private ArrayList<Bandit> bandits;
 
-    private final int _identifiant;
-    private boolean _isMarshall = false;
+    private final int id;
+    private boolean isMarshall = false;
 
 
     public Wagon(int id)
     {
-        _identifiant = id;
-        _voyageurs = new ArrayList<Voyageur>();
-        _bandits = new ArrayList<Bandit>();
+        this.id = id;
+        travellers = new ArrayList<Voyageur>();
+        bandits = new ArrayList<Bandit>();
 
         Random rand = new Random();                     // This is used to generate a random number of Voyageur
         int nbVo = rand.nextInt(4) + 1;          // We decide that they will be at least one Voyageur, and a maximum of 4
 
         for (int i = 0; i < nbVo; i++)
         {
-            _voyageurs.add(new Voyageur(new Position(_identifiant, true)));
+            travellers.add(new Voyageur(new Position(this.id, true)));
         }
     }
 
     private boolean ContainsBandit(Bandit element)
     {
-        for (Bandit b : _bandits)
+        for (Bandit b : bandits)
             if (b.Name() == element.Name())
                 return true;
 
@@ -43,14 +43,14 @@ public class Wagon implements IWagon {
     public void AddBandit(Bandit element)
     {
         if (!ContainsBandit(element))
-            _bandits.add(element);
+            bandits.add(element);
     }
 
     public boolean RemoveBandit(Bandit element)
     {
         if (ContainsBandit(element))
         {
-            _bandits.remove(element);
+            bandits.remove(element);
             return true;
         }
         else
@@ -59,16 +59,16 @@ public class Wagon implements IWagon {
 
     public boolean IsMarshall()
     {
-        return _isMarshall;
+        return isMarshall;
     }
 
     public void AddMarshall()
     {
-        _isMarshall = true;
+        isMarshall = true;
     }
 
     public void RemoveMarshall()
     {
-        _isMarshall = false;
+        isMarshall = false;
     }
 }

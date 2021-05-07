@@ -7,19 +7,19 @@ import java.util.Random;
 
 public class Voyageur implements IPersonnage, IObservable {
 
-    private int _bourse;
-    private int _nombreBijoux;
+    private int bourse;
+    private int nbBijoux;
 
-    private Position _position;
+    private Position pos;
 
 
     public Voyageur(Position pos)
     {
         Random rand = new Random();                // This is used to generated random values for _bourse and _nombreBijoux
 
-        _position = pos;
-        _bourse = rand.nextInt(501);        // Sets a random value between [0;501[
-        _nombreBijoux = rand.nextInt(4);    // Sets a random value between [0;4[
+        this.pos = pos;
+        bourse = rand.nextInt(501);        // Sets a random value between [0;501[
+        nbBijoux = rand.nextInt(4);    // Sets a random value between [0;4[
     }
 
 
@@ -29,8 +29,8 @@ public class Voyageur implements IPersonnage, IObservable {
      */
     public int GetBourse()
     {
-        int res = _bourse;
-        _bourse = 0;
+        int res = bourse;
+        bourse = 0;
         return res;
     }
 
@@ -39,10 +39,10 @@ public class Voyageur implements IPersonnage, IObservable {
      */
     public int GetBijoux()
     {
-        if (_nombreBijoux == 0)
+        if (nbBijoux == 0)
             return 0;
 
-        _nombreBijoux--;
+        nbBijoux--;
         return 500;
     }
 
@@ -53,7 +53,7 @@ public class Voyageur implements IPersonnage, IObservable {
 
     public Position GetPosition()
     {
-        return _position;
+        return pos;
     }
 
     public void Update()

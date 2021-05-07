@@ -9,39 +9,39 @@ import ColtExpress.Interface.IObservable;
 
 public class Bandit implements IPersonnage, IObservable {
 
-    private final String _name;
-    private Position _position;
-    private int _butin = 0;
+    private final String nom;
+    private Position pos;
+    private int argent = 0;
 
     public Bandit(String name, Position pos)
     {
-        _name = name;
-        _position = pos;
+        nom = name;
+        this.pos = pos;
     }
 
     public String Name()
     {
-        return _name;
+        return nom;
     }
 
     public Position GetPosition()
     {
-        return _position;
+        return pos;
     }
 
-    public void AddButin(int value)
+    public void AddArgent(int value)
     {
-        _butin += value;
+        argent += value;
     }
 
-    public int GetButin()
+    public int GetArgent()
     {
-        return _butin;
+        return argent;
     }
 
-    public void ResetButin()
+    public void ResetArgent()
     {
-        _butin = 0;
+        argent = 0;
     }
 
     public boolean Move(Direction dir)
@@ -49,9 +49,9 @@ public class Bandit implements IPersonnage, IObservable {
         switch (dir)
         {
             case HAUT:
-                if (_position.IsInsideWagon())
+                if (pos.IsInsideWagon())
                 {
-                    _position.GoOutside();
+                    pos.GoOutside();
                     return true;
                 }
                 else
@@ -59,27 +59,27 @@ public class Bandit implements IPersonnage, IObservable {
 
 
             case BAS:
-                if (!_position.IsInsideWagon())
+                if (!pos.IsInsideWagon())
                 {
-                    _position.GoInside();
+                    pos.GoInside();
                     return true;
                 }
                 else
                     return false;
 
             case AVANT:
-                if (_position.GetWagon()  < ColtExpress.NB_WAGONS)
+                if (pos.GetWagon()  < ColtExpress.NB_WAGONS)
                 {
-                    _position.SetWagon(_position.GetWagon() + 1);
+                    pos.SetWagon(pos.GetWagon() + 1);
                     return true;
                 }
                 else
                     return false;
 
             case ARRIERE:
-                if (_position.GetWagon() > 0)
+                if (pos.GetWagon() > 0)
                 {
-                    _position.SetWagon(_position.GetWagon() - 1);
+                    pos.SetWagon(pos.GetWagon() - 1);
                     return true;
                 }
                 else
