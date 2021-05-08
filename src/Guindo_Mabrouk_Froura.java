@@ -1,10 +1,8 @@
-package ColtExpress;
-
 import javax.swing.*;
 import java.util.ArrayList;
 import java.util.Random;
 
-public class ColtExpress {
+class ColtExpress {
 
     public static final int NB_WAGONS = 4;
     public static final int NB_BANDITS = 2;
