@@ -11,21 +11,22 @@ class ColtExpress {
     public static void main(String[] args)
     {
 
+
     }
 
 
 }
 
-class VueTrain extends JPanel {
+class VueT extends JPanel {
     private Observers observer;
 
-    public VueTrain()
+    public VueT()
     {
 
     }
 }
 
-class Marshall implements IPersonnage, IObservable {
+class Marshall implements ICharacter, IObservable {
 
     private Position pos;
 
@@ -51,7 +52,7 @@ class Marshall implements IPersonnage, IObservable {
 
 }
 
-class Bandit implements IPersonnage, IObservable {
+class Bandit implements ICharacter, IObservable {
 
     private final String nom;
     private Position pos;
@@ -141,7 +142,7 @@ class Bandit implements IPersonnage, IObservable {
 }
 
 
-interface IPersonnage {
+interface ICharacter {
 
     public String Name();
 
@@ -172,13 +173,13 @@ class Train extends Observers {
     public static int LONGUEUR = 60, LARGEUR = 40;
 
     private ArrayList<IWagon> elem;
-    private ArrayList<IPersonnage> characters;
+    private ArrayList<ICharacter> characters;
     private Random random;
 
     public Train() {
         super();
         elem = new ArrayList<IWagon>();
-        characters = new ArrayList<IPersonnage>();
+        characters = new ArrayList<ICharacter>();
         random = new Random();
 
         IWagon first = new Locomotive();
@@ -191,20 +192,20 @@ class Train extends Observers {
         }
 
 
-        IPersonnage marshall = new Marshall();
+        ICharacter marshall = new Marshall();
         characters.add(marshall);
 
         for (int i = 0; i < ColtExpress.NB_BANDITS; i++)
         {
             int position = random.nextInt(ColtExpress.NB_WAGONS);
-            IPersonnage next = new Bandit(String.format("Bandit %s", i), new Position(position, true));
+            ICharacter next = new Bandit(String.format("Bandit %s", i), new Position(position, true));
             AddObserver((IObservable) next);
         }
 
         for (int i = 0; i < ColtExpress.NB_VOYAGEURS; i++)
         {
             int position = random.nextInt(ColtExpress.NB_WAGONS);
-            IPersonnage next = new Voyageur(new Position(position, true));
+            ICharacter next = new Voyageur(new Position(position, true));
             AddObserver((IObservable) next);
         }
     }
@@ -450,7 +451,7 @@ enum Direction {
     BAS;
 }
 
-class Voyageur implements IPersonnage, IObservable {
+class Voyageur implements ICharacter, IObservable {
 
     private int bourse;
     private int nbBijoux;
